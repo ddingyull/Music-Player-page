@@ -1,0 +1,159 @@
+section {
+  width: 20vw;
+  height: 65vh;
+  position: absolute;
+  top: 150%;  //회전시킬 때 viewport로 돌아가기 때문에 50 ->150으로 변경
+  left: 50%;
+  margin-left: -10vw;
+  margin-top: -32.5vh;
+  transition: 1s;
+
+  article {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    .inner {
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      padding: 5vh 2.5vw 8vh;
+      border-radius: 10px;
+      box-shadow: 10px 10px 20px rgba(0, 0, 0, .1);
+      opacity: .6;
+      transform: scale(.8);
+      transition: 1s;
+
+      /*CSS로 CD형태 이미지 넣어주기*/
+      .pic{
+        width: 15vw;
+        height: 15vw;
+        position: relative;
+        /*CSS로 넣은 사진을 눈에 보이지 않느 곳으로 사라지게하기위함(overfow-hidden있어야가능)*/
+        background-repeat: no-repeat;
+        background-position: -9999px -9999px;
+
+        &::before,
+        &::after{
+          display: block;
+          content: "";
+          width: 100%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          left: 0px;
+          border-radius: 50%;
+          overflow: hidden;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: cover;
+          // background-image: url(../img/cardio.jpg); css로 만들 경우 사용
+          background-image: inherit;  //js로 구현하기 위해 부모요소 상속시켰음 
+          }
+
+          &::before{
+            transform: translate(0, 10%);
+            filter: blur(20px) brightness(130%);
+          }
+
+          .dot {
+            width: 2.5vw;
+            height: 2.5vw;
+            position: absolute;
+            top: 50%;   //부모요소의 50%
+            left: 50%;
+            transform: translate(-50%, -50%);  //자기자신의 50%
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: inset 5px 5px 10px rbga(0, 0, 0, .2); //inset(그림자는 안쪽으로)
+            z-index: 1;
+          }
+
+          &.on{
+            &::before {
+              animation: rotation2 4s linear infinite;
+            }
+
+            &::after {
+              animation: rotation 4s linear infinite;
+            }
+          }
+      }
+
+      .text {
+        width: 15vw;
+        text-align: center;
+        position: absolute;
+        margin-top: 60px;
+        letter-spacing: 1px;
+
+        h2{
+          margin-bottom: 20px;
+        }
+
+        p {
+          color: #777;
+        }
+
+        .control{
+          display: flex;
+          justify-content: space-around;
+          margin-top: 5vh;
+
+          li{
+            cursor: pointer;
+            opacity: .6;
+            transition: .5s;
+
+            &.play{
+              transform: scale(1.3);
+              opacity: .8;
+            }
+
+            &:hover{
+              transform: scale(1.3);
+              opacity: .8;
+
+              &.play {
+                transform: scale(1.5);
+                opacity: 1;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.on{
+      .inner{
+        opacity: 1;
+        transform: scale(1.0);
+      }
+    }
+  }
+}
+
+
+
+/*Keyframes*/
+/*img 회전*/
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
+}
+
+/*img shadow 회전*/
+@keyframes rotation2 {
+  0% {
+    transform: translate(0, 10%) rotate(0deg);
+  }
+  100%{
+    transform: translate(0, 10%) rotate(360deg);
+  }
+}

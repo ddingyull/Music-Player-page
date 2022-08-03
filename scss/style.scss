@@ -1,0 +1,68 @@
+/*Font
+font-family: 'Inter', sans-serif; */ 
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+/*Reset scss*/
+@import 'reset.scss';
+
+/*Common*/
+body{
+  font : 16px/1 "Inter";
+}
+
+/*UI*/
+figure{
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  background: linear-gradient(25deg, #73A9AD, #C4DFAA);
+
+  h1{
+    position: absolute;
+    top: 7vh;
+    left: 4vw;
+    //글자 간격 줄이기
+    //font-size: 0px;
+  
+    strong{
+      font : 40px/1;
+      color: #fff;
+      letter-spacing: 1px;
+    }
+  
+    span{
+      font-size: 16px;
+      color: #fff;
+      opacity: .8;
+      letter-spacing: 1px;
+    }
+  }
+
+  .menu{
+    position: absolute;
+    top: 8vh;
+    right: 4vw;
+    font-size: 28px;
+    color: #fff;
+  }
+
+  /*Panel scss*/
+  @import "panel";
+
+  /*Btns scss*/
+  @import "btns";
+  
+  >p{
+    position: absolute;
+    bottom: 5vh;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: #fff;
+  }
+}
+
+
+
+
+
+
